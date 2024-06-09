@@ -1,0 +1,76 @@
+<%if(errorMessage){%>
+  <div class="alert alert-danger" role="alert">
+    <%=errorMessage%>
+  </div>
+  <%}%>
+
+  <div class="mt-5 mb-4 job-form">
+     
+    <form action="/job/update" method="post">
+  
+    <h2>Update Job</h2>
+    
+    <input type="hidden" class="form-control" id="id" name="id" value="<%= job.id %>" >
+    <div class="mb-3">
+    <select class="form-select" name="category"  aria-label="select example" >
+        <option selected disabled>Select Job Category</option>
+        <option value="Tech" <%= job.category == 'Tech' ? 'selected' : '' %>>Tech</option>
+        <option value="Non-Tech" <%= job.category == 'Non-Tech' ? 'selected' : '' %>>Non-Tech</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+    <select class="form-select" name="tech" aria-label="select example" >
+        <option selected disabled>Select Job Designation</option>
+        <option value="SDE-1" <%= job.tech == 'SDE-1' ? 'selected' : '' %>>SDE-1</option>
+        <option value="SDE-2" <%= job.tech == 'SDE-2' ? 'selected' : '' %>>SDE-2</option>
+        <option value="HR" <%= job.tech == 'HR' ? 'selected' : '' %>>HR</option>
+        <option value="MEAN Developer" <%= job.tech == 'MEAN Developer' ? 'selected' : '' %>>MEAN Developer</option>
+        <option value="MERN Developer" <%= job.tech == 'MERN Developer' ? 'selected' : '' %>>MERN Developer</option>
+        <option value="Full-Stack Developer" <%= job.tech == 'Full-Stack Developer' ? 'selected' : '' %>>Full-Stack Developer</option>
+        <option value="Front-End Developer" <%= job.tech == 'Front-End Developer' ? 'selected' : '' %>>Front-End Developer</option>
+        <option value="Back-End Developer" <%= job.tech == 'Back-End Developer' ? 'selected' : '' %>>Back-End Developer</option>
+        <option value="Java Developer" <%= job.tech == 'Java Developer' ? 'selected' : '' %>>Java Developer</option>
+        <option value="Python Developer" <%= job.tech == 'Python Developer' ? 'selected' : '' %>>Python Developer</option>
+        <option value="DevOps Engineer" <%= job.tech == 'DevOps Engineer' ? 'selected' : '' %>>DevOps Engineer</option>
+      </select>
+    </div>
+        <div class="mb-3"> 
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Job Title" value="<%= job.name %>" >
+      </div>
+
+        <div class="mb-3"> 
+            <input type="text" class="form-control" id="company" name="company" placeholder="Enter Company Name" value="<%= job.company %>" >
+        </div>
+        
+        <div class="mb-3">
+          <input type="text" class="form-control" id="location" name="location" placeholder="Enter Job Location" value="<%= job.location %>">
+          </div>
+
+
+        <div class="mb-3">
+            <input type="text" class="form-control" id="salary" name="salary" placeholder="Enter Salary " value="<%= job.salary %>" required> 
+        </div>
+
+        <div class="mb-3"> 
+            <input type="number" class="form-control" id="openings" name="openings" placeholder="Total Vacancies " value="<%= job.openings %>"> 
+        </div>
+
+          <div class="mb-3">
+            <select class="form-select" name="skills" aria-label="select example" multiple >
+                <option selected disabled>Select Skills Required For This Job</option>
+                <% job.skills.forEach((skill) => { %>
+                  <option value="<%= skill %>"><%= skill %></option>
+              <% }); %>
+              </select>
+          </div>
+
+            <div class="mb-3">      
+                <input type="date" class="form-control" id="date" name="date" placeholder="Apply By" value="<%= job.date %>"> 
+            </div>
+         <div class="mb-3">
+          <button type="submit" class="btn btn-primary">Update Job</button>
+         </div>
+   
+    </form>
+  </div>
